@@ -39,11 +39,21 @@ import serverConfig from './config';
 // Set native promises as mongoose promise
 mongoose.Promise = global.Promise;
 
+
+
 // MongoDB Connection
-mongoose.connect(serverConfig.mongoURL, (error) => {
-  if (error) {
-    console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
-    throw error;
+var MongoClient = require('mongodb').MongoClient;
+
+var uri = "mongodb://adminmern:p%4055word@cluster0-shard-00-00-ekge8.mongodb.net:27017,cluster0-shard-00-01-ekge8.mongodb.net:27017,cluster0-shard-00-02-ekge8.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
+MongoClient.connect(uri, function(err, db) {
+  db.close();
+});
+
+
+//mongoose.connect(serverConfig.mongoURL, (error) => {
+//  if (error) {
+//    console.error('Please make sure Mongodb is installed and running!'); // eslint-disable-line no-console
+//    throw error;
   }
 
   // feed some dummy data in DB.
